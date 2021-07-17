@@ -18,18 +18,18 @@ int contador = 0;
 int i;
 int status;
 
-void cadastrar_projeto(base_projetos cadastro[TAM]);
-void relatorio_projeto(base_projetos cadastro[TAM]);
-void buscar_codigo(base_projetos cadastro[TAM]);
-void aFazer(base_projetos cadastro[TAM]);
-void fazendo(base_projetos cadastro[TAM]);
-void concluidos(base_projetos cadastro[TAM]);
-void verificarStatus(base_projetos cadastro[TAM], int st);
+void cadastrar_projeto(base_projetos proj[TAM]);
+void relatorio_projeto(base_projetos proj[TAM]);
+void buscar_codigo(base_projetos proj[TAM]);
+void aFazer(base_projetos proj[TAM]);
+void fazendo(base_projetos proj[TAM]);
+void concluidos(base_projetos proj[TAM]);
+void verificarStatus(base_projetos proj[TAM], int st);
 
 int main() {
 
 	setlocale(LC_ALL, "portuguese");
-	base_projetos cadastro[TAM];
+	base_projetos proj[TAM];
 
 	int escolha;
 
@@ -54,27 +54,27 @@ int main() {
 
 		switch(escolha) {
 			case 1:
-				cadastrar_projeto(cadastro);
+				cadastrar_projeto(proj);
 				break;
 
 			case 2:
-				relatorio_projeto(cadastro);
+				relatorio_projeto(proj);
 				break;
 
 			case 3:
-				aFazer(cadastro);
+				aFazer(proj);
 				break;
 
 			case 4:
-				fazendo(cadastro);
+				fazendo(proj);
 				break;
 
 			case 5:
-				concluidos(cadastro);
+				concluidos(proj);
 				break;
 
 			case 6:
-				buscar_codigo(cadastro);
+				buscar_codigo(proj);
 				break;
 
 			case 0:
@@ -84,7 +84,8 @@ int main() {
 
 			default:
 				system("cls");
-				printf("\nOPÇÃO INVÁLIDA\n");
+				printf("\nOPÇÃO INVÁLIDA!\n");
+				printf("Aperte ENTER e tente novamente.\n\n");
 				system("Pause");
 				break;
 		}
@@ -93,7 +94,7 @@ int main() {
 	return 0;
 }
 
-void cadastrar_projeto(base_projetos cadastro[TAM]) {
+void cadastrar_projeto(base_projetos proj[TAM]) {
 
 	/*int status;*/
 
@@ -105,68 +106,68 @@ void cadastrar_projeto(base_projetos cadastro[TAM]) {
 		printf("|          CADASTRAR NOVO PROJETO         | \n");
 		printf("===========================================\n");
 		printf("\nCódigo do projeto: %d \n", contador+1);
-		cadastro[contador].codigo = contador+1;
+		proj[contador].codigo = contador+1;
 
 		printf("Título: ");
-		fgets(cadastro[contador].titulo, 40, stdin);
+		fgets(proj[contador].titulo, 40, stdin);
 		fflush(stdin);
 
 		printf("Descrição: ");
-		fgets(cadastro[contador].descricao, 100, stdin);
+		fgets(proj[contador].descricao, 100, stdin);
 		fflush(stdin);
 
 		printf("Ano: ");
-		scanf("%d", &cadastro[contador].ano);
+		scanf("%d", &proj[contador].ano);
 		fflush(stdin);
 
 		printf("Tipo de projeto: ");
-		fgets(cadastro[contador].tipo, 30, stdin);
+		fgets(proj[contador].tipo, 30, stdin);
 		fflush(stdin);
 
 		printf("Público:");
-		fgets(cadastro[contador].publico, 30, stdin);
+		fgets(proj[contador].publico, 30, stdin);
 		fflush(stdin);
 
 		printf("Gerente de projetos responsável: ");
-		fgets(cadastro[contador].gerente, 50, stdin);
+		fgets(proj[contador].gerente, 50, stdin);
 		fflush(stdin);
 
 		printf("Orçamento do projeto: R$ ");
-		scanf("%f", &cadastro[contador].orcamento);
+		scanf("%f", &proj[contador].orcamento);
 		fflush(stdin);
 
 		printf("Status: \n");
-		printf(" [1] - A fazer    [2] - Em andamento    [3] - Concluido \n");
+		printf(" [1] - A fazer    [2] - Em andamento    [3] - Concluído \n");
 		scanf("%d", &status);
 		fflush(stdin);
 
 		switch(status) {
 			case 1:
-				cadastro[contador].status = 1;
+				proj[contador].status = 1;
 				break;
 
 			case 2:
-				cadastro[contador].status = 2;
+				proj[contador].status = 2;
 				break;
 
 			case 3:
-				cadastro[contador].status = 3;;
+				proj[contador].status = 3;;
 				break;
 
 			default:
-				cadastro[contador].status = 10;
+				proj[contador].status = 10;
 				break;
 		}
 		printf("\n");
 		contador++;
 		system("Pause");
 	} else {
-		printf("Número máximo de cadastros atingido!");
+		printf("> Número máximo de cadastros atingido!");
 		system("Pause");
 	}
 }
 
-void relatorio_projeto(base_projetos cadastro[TAM]) {
+void relatorio_projeto(base_projetos proj[TAM]) {
 
 	/*int i;*/
 
@@ -178,14 +179,14 @@ void relatorio_projeto(base_projetos cadastro[TAM]) {
 		for(i=0; i<contador; i++) {
 			printf("\n");
 			printf("Código: %d\n", i+1);
-			printf("Título: %s", cadastro[i].titulo);
-			printf("Descrição: %s", cadastro[i].descricao);
-			printf("Ano: %d\n", cadastro[i].ano);
-			printf("Tipo de projeto: %s", cadastro[i].tipo);
-			printf("Público: %s", cadastro[i].publico);
-			printf("Gerente de projetos responsável: %s", cadastro[i].gerente);
-			printf("Orçamento do projeto: R$ %f\n", cadastro[i].orcamento);
-			printf("Status: %d\n", cadastro[i].status);
+			printf("Título: %s", proj[i].titulo);
+			printf("Descrição: %s", proj[i].descricao);
+			printf("Ano: %d\n", proj[i].ano);
+			printf("Tipo de projeto: %s", proj[i].tipo);
+			printf("Público: %s", proj[i].publico);
+			printf("Gerente de projetos responsável: %s", proj[i].gerente);
+			printf("Orçamento do projeto: R$ %f\n", proj[i].orcamento);
+			printf("Status: %d\n", proj[i].status);
 		}
 	} else {
 		printf("\n\nLista vazia!\n");
@@ -195,87 +196,86 @@ void relatorio_projeto(base_projetos cadastro[TAM]) {
 }
 
 
-void buscar_codigo(base_projetos cadastro[TAM]) {
+void buscar_codigo(base_projetos proj[TAM]) {
 
 	int j;
 	int busca;
-	int acha;
+	int x = 0;
 
 	system("cls");
 	printf("===========================================\n");
 	printf("|             BUSCAR POR CÓDIGO           | \n");
 	printf("===========================================\n");
-	printf("\nDigite o código que deseja buscar: \n");
+	printf("\n>> Digite o código que deseja buscar: \n");
 	scanf ("%d", &busca);
 	fflush(stdin);
-	j = 0;
-	acha = 0;
-	while((j < TAM) && (acha == 0)) {
-		if (cadastro[j].codigo == busca) {
-			printf("\nCódigo: %d\n", cadastro[j].codigo);
-			printf("Título: %s", cadastro[j].titulo);
-			printf("Descriçao: %s", cadastro[j].descricao);
-			printf("Ano: %d\n", cadastro[j].ano);
-			printf("Tipo de projeto: %s", cadastro[j].tipo);
-			printf("Público: %s", cadastro[j].publico);
-			printf("Gerente de projetos responsável: %s", cadastro[j].gerente);
-			printf("Orçamento do projeto: R$ %f\n", cadastro[j].orcamento);
-			printf("Status: %d\n", cadastro[j].status);
-			acha = 1;
-			system("Pause");
-		}
-		j++;
-	}
-	if(acha == 0) {
-		printf("Projeto não encontrado com o código %d\n", busca);
-		system("Pause");
-	}
+	system("cls");
 
+	for(j=0; j<contador; j++) {
+		if(proj[j].codigo == busca) {
+			printf("\n> Projetos com o código %d: \n", busca);
+			printf("\n");
+			printf("Código: %d\n", i+1);
+			printf("Título: %s", proj[j].titulo);
+			printf("Descrição: %s", proj[j].descricao);
+			printf("Ano: %d\n", proj[j].ano);
+			printf("Tipo de projeto: %s", proj[j].tipo);
+			printf("Público: %s", proj[j].publico);
+			printf("Gerente de projetos responsável: %s", proj[j].gerente);
+			printf("Orçamento do projeto: R$ %f\n", proj[j].orcamento);
+			printf("Status: %d\n", proj[j].status);
+			x += 1;
+		}
+	}
+	if(x == 0) {
+		printf("\n> Projeto não encontrado com o código %d\n\n", busca);
+	}
+	system("Pause");
 }
 
 
-void aFazer(base_projetos cadastro[TAM]) {
+void aFazer(base_projetos proj[TAM]) {
 
 	system("cls");
 	printf("===========================================\n");
 	printf("|             PROJETOS A FAZER            | \n");
 	printf("===========================================\n");
-	verificarStatus(cadastro, 1);
+	verificarStatus(proj, 1);
 }
 
 
-void fazendo(base_projetos cadastro[TAM]) {
+void fazendo(base_projetos proj[TAM]) {
 
 	system("cls");
 	printf("==========================================\n");
 	printf("|          PROJETOS EM ANDAMENTO         | \n");
 	printf("==========================================\n");
-	verificarStatus(cadastro, 2);
+	verificarStatus(proj, 2);
 }
 
-void concluidos(base_projetos cadastro[TAM]) {
+void concluidos(base_projetos proj[TAM]) {
 
 	system("cls");
 	printf("==========================================\n");
 	printf("|           PROJETOS CONCLUÍDOS          | \n");
 	printf("==========================================\n");
-	verificarStatus(cadastro, 3);
+	verificarStatus(proj, 3);
 }
 
-void verificarStatus(base_projetos cadastro[TAM], int st) {
+void verificarStatus(base_projetos proj[TAM], int st) {
 	int x = 0;
 	for(i=0; i<contador; i++) {
-		if(cadastro[i].status == st) {
+		if(proj[i].status == st) {
 			printf("\n");
 			printf("Código: %d\n", i+1);
-			printf("Título: %s", cadastro[i].titulo);
-			printf("Descrição: %s", cadastro[i].descricao);
-			printf("Ano: %d\n", cadastro[i].ano);
-			printf("Tipo de projeto: %s", cadastro[i].tipo);
-			printf("Público: %s", cadastro[i].publico);
-			printf("Gerente de projetos responsável: %s", cadastro[i].gerente);
-			printf("Orçamento do projeto: R$ %f\n", cadastro[i].orcamento);
-			printf("Status: %d\n", cadastro[i].status);
+			printf("Título: %s", proj[i].titulo);
+			printf("Descrição: %s", proj[i].descricao);
+			printf("Ano: %d\n", proj[i].ano);
+			printf("Tipo de projeto: %s", proj[i].tipo);
+			printf("Público: %s", proj[i].publico);
+			printf("Gerente de projetos responsável: %s", proj[i].gerente);
+			printf("Orçamento do projeto: R$ %f\n", proj[i].orcamento);
+			printf("Status: %d\n", proj[i].status);
 			x += 1;
 		}
 	}
@@ -284,3 +284,4 @@ void verificarStatus(base_projetos cadastro[TAM], int st) {
 	}
 	system("Pause");
 }
+
