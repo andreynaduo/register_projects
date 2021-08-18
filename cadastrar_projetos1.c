@@ -215,7 +215,7 @@ void buscar_codigo(base_projetos proj[TAM]) {
 		if(proj[j].codigo == busca) {
 			printf("\n> Projetos com o código %d: \n", busca);
 			printf("\n");
-			printf("Código: %d\n", i+1);
+			printf("Código: %d\n", busca);
 			printf("Título: %s", proj[j].titulo);
 			printf("Descrição: %s", proj[j].descricao);
 			printf("Ano: %d\n", proj[j].ano);
